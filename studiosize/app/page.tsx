@@ -3,6 +3,7 @@ import React from 'react'
 import Page1 from '@/components/Page1';
 import Part2 from '@/components/Part2';
 import Page3 from '@/components/Page3';
+import Page4 from '@/components/Page4';
 
 
 
@@ -14,6 +15,7 @@ export default function Home() {
     <Page1 />
     <Part2/>
     <Page3/>
+    <Page4/>
    </main>
    </>
   );

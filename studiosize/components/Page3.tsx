@@ -6,6 +6,13 @@ import Image from "next/image";
 import "swiper/css/bundle";
 import gsap from "gsap";
 
+type MediaItem = {
+  img: string;
+  video: string;
+  title: string;
+  subtitle: string;
+};
+
 const Page3: React.FC = () => {
   
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,6 +20,33 @@ const Page3: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+    // navigation code for left and right arrows
+    const navigateLeft = () => {
+      if(containerRef.current){
+        const scrollAmount = containerRef.current.offsetWidth;
+        const newPosition = Math.max(scrollPosition - scrollAmount, 0);
+        containerRef.current.scrollTo({
+          left: newPosition,
+          behavior: 'smooth'
+        })
+        setScrollLeft(newPosition);
+      }
+    }
+
+    const navigateRight = () => {
+      if(containerRef.current){
+        const scrollAmount = containerRef.current.offsetWidth;
+        const newPosition = Math.min(scrollPosition + scrollAmount, containerRef.current.scrollWidth - containerRef.current.offsetWidth);
+        containerRef.current.scrollTo({
+          left: newPosition,
+          behavior: 'smooth'
+        })
+        setScrollLeft(newPosition);
+      }
+    }
+
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -65,7 +99,7 @@ const Page3: React.FC = () => {
     if (cursorRef.current) {
       gsap.to(cursorRef.current, {
         scale: 1,
-        opacity : 1,
+        opacity: 1,
         duration: 0.3,
       });
     }
@@ -118,23 +152,103 @@ const Page3: React.FC = () => {
     handleMouseLeave,
   ]);
 
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-
-  const handleVideoMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
+  const handleVideoMouseEnter = (video: HTMLVideoElement) => {
+    if (video) {
+      video.play();
     }
   };
 
-  const handleVideoMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+  const handleVideoMouseLeave = (video: HTMLVideoElement) => {
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
     }
   };
+
+  const mediaItems: MediaItem[] = [
+    {
+      img: "/assets/HotType.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912967172/rendition/540p/file.mp4?loc=external&log_user=0&signature=cab2e2728c39f5caf72aa082ad1fce88bfbbe11f2875057fface207ab9bc9545",
+      title: "Hot Type",
+      subtitle: "Red hot type animations",
+    },
+    {
+      img: "/assets/alterscope.png",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/968641716/rendition/540p/file.mp4?loc=external&log_user=0&signature=60e18c3db2933fc8327f5f78c06b5e3287b950fc7d988492ecfa06c5c8b3dfc2",
+      title: "Alterscope",
+      subtitle: "Web3 risk in real time",
+
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Determ_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912967024/rendition/540p/file.mp4?loc=external&log_user=0&signature=9b206386649900f4c73acd6e193081224721ef5577f4e8ab9628e820238c270d",
+        title:"Determ",
+        subtitle:"Sensible media monitoring",
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2023/06/VK_Ikons_Cover_2-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/941107506/rendition/720p/file.mp4?loc=external&log_user=0&signature=5b350f4dd98331c48ba6d4341f564e42d5ee04be4a4aaf8eb71e6fda7dc962ce",
+        title:"VK Ikons",
+        subtitle: "Iconic vine blend"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Arsfutura_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912966817/rendition/540p/file.mp4?loc=external&log_user=0&signature=8b6be2b56122ea980233f32e4dfdce2c7eedcf9b6e80249374b02c8879779ff4",
+        title:"Ars Futura",
+        subtitle:"Future starts today"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Vignelli_Featured-567x709.png",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912967388/rendition/540p/file.mp4?loc=external&log_user=0&signature=86176de0eeebb48fbc0394bd0bb2670214f6d7287a3ba1573bae69865046775d",
+        title:"Vignelli 90th anniversary",
+        subtitle:"Paying tribute to Massimo"
+
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/06/Umaki_Featured-video-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/953460095/rendition/540p/file.mp4?loc=external&log_user=0&signature=66fdeb5e5965284b276e376c06799e8a41a17b3aa0efaccde5565d500b8fe2d1",
+        title:"Umaki",
+        subtitle:"Trip for your taste buds"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Cindric_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912966934/rendition/540p/file.mp4?loc=external&log_user=0&signature=03b3f99d74b1960477dbea7761a9d2af138173aa7360b1555c5e487d08f4980c",
+        title:"Cindric",
+        subtitle:"Minimal architecture"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Bronza_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912966858/rendition/540p/file.mp4?loc=external&log_user=0&signature=d107374fd799b8882a9cc73f5aeaaf90d4bac8fe1b41ab0a1a69a788a47301e0",
+        title:"Bronza",
+        subtitle:"Coined pasta"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Motion_Array_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912967269/rendition/540p/file.mp4?loc=external&log_user=0&signature=95c4eabc2f9edd97d30024d1d28db0d8b218eb3b9b0920b1d9736c4f4ec27fdb",
+        title:"Motion Array",
+        subtitle: "Awesome motion templates"
+    },
+    {
+      img: "https://studio-size.com/wp-content/uploads/2024/04/Pomalo_Featured-567x709.jpg",
+      video:
+        "https://player.vimeo.com/progressive_redirect/playback/912989853/rendition/540p/file.mp4?loc=external&log_user=0&signature=16dbee1ff02cd6a65b5cf705268dab7665a28701a107f303d8b1fd156eafc494",
+        title:"Pomalo",
+        subtitle:"Laid-back skincare"
+    },
+  ];
 
   return (
-    <div className="page-3 bg-black w-full h-[65vw] p-14 font-[Satoshi]">
+    <div className="page-3 bg-black w-full h-[55vw] p-14 font-[Satoshi]">
       <div className="text-content flex justify-between items-center w-full ]">
         <h1 className="text-white text-5xl font-bold ">Featured work</h1>
         <div className="buttons flex items-center justify-between w-fit gap-1 hover:bg ">
@@ -149,12 +263,14 @@ const Page3: React.FC = () => {
             />
           </button>
           <button
+            onClick={navigateLeft}
             className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
              transtion-all duration-300 ease-in-out"
           >
             <i className="ri-arrow-left-line"></i>
           </button>
           <button
+            onClick={navigateRight}
             className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
              transtion-all duration-300 ease-in-out"
           >
@@ -169,116 +285,56 @@ const Page3: React.FC = () => {
           className="container flex gap-7 flex-nowrap overflow-auto overflow-y-hidden"
           style={{ cursor: isDragging ? "grabbing" : "pointer" }}
         >
-          <div
-            className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
-            onMouseEnter={handleVideoMouseEnter}
-            onMouseLeave={handleVideoMouseLeave}
-          >
-            <Image
-              src="/assets/HotType.jpg"
-              width={410}
-              height={100}
-              alt="imgae"
-              className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
-            />
-            <video
-              className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-              muted
-              loop
-              autoPlay
-              src="https://player.vimeo.com/progressive_redirect/playback/912967172/rendition/540p/file.mp4?loc=external&log_user=0&signature=cab2e2728c39f5caf72aa082ad1fce88bfbbe11f2875057fface207ab9bc9545"
-            ></video>
-          </div>
-
-          <div
-            className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
-            onMouseEnter={handleVideoMouseEnter}
-            onMouseLeave={handleVideoMouseLeave}
-          >
-            <Image
-              src="/assets/alterscope.png"
-              width={410}
-              height={100}
-              alt="imgae"
-              className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
-            />
-            <video
-              className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-              muted
-              loop
-              autoPlay
-              src="https://player.vimeo.com/progressive_redirect/playback/968641716/rendition/540p/file.mp4?loc=external&log_user=0&signature=60e18c3db2933fc8327f5f78c06b5e3287b950fc7d988492ecfa06c5c8b3dfc2"
-            ></video>
-          </div>
-
-          <div
-            className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
-            onMouseEnter={handleVideoMouseEnter}
-            onMouseLeave={handleVideoMouseLeave}
-          >
-            <Image
-              src="https://studio-size.com/wp-content/uploads/2024/04/Determ_Featured-567x709.jpg"
-              width={410}
-              height={100}
-              alt="imgae"
-              className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
-            />
-            <video
-              className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-              muted
-              loop
-              autoPlay
-              src="https://player.vimeo.com/progressive_redirect/playback/912967024/rendition/540p/file.mp4?loc=external&log_user=0&signature=9b206386649900f4c73acd6e193081224721ef5577f4e8ab9628e820238c270d"
-            ></video>
-          </div>
-
-          <div
-            className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
-            onMouseEnter={handleVideoMouseEnter}
-            onMouseLeave={handleVideoMouseLeave}
-          >
-            <Image
-              src="https://studio-size.com/wp-content/uploads/2023/06/VK_Ikons_Cover_2-567x709.jpg"
-              width={410}
-              height={100}
-              alt="imgae"
-              className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
-            />
-            <video
-              className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-              muted
-              loop
-              autoPlay
-              src="https://player.vimeo.com/progressive_redirect/playback/941107506/rendition/720p/file.mp4?loc=external&log_user=0&signature=5b350f4dd98331c48ba6d4341f564e42d5ee04be4a4aaf8eb71e6fda7dc962ce"
-            ></video>
-          </div>
-
-          <div
-            className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
-            onMouseEnter={handleVideoMouseEnter}
-            onMouseLeave={handleVideoMouseLeave}
-          >
-            <Image
-              src="https://studio-size.com/wp-content/uploads/2024/04/Arsfutura_Featured-567x709.jpg"
-              width={410}
-              height={100}
-              alt="imgae"
-              className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
-            />
-            <video
-              className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
-              muted
-              loop
-              autoPlay
-              src="https://player.vimeo.com/progressive_redirect/playback/912966817/rendition/540p/file.mp4?loc=external&log_user=0&signature=8b6be2b56122ea980233f32e4dfdce2c7eedcf9b6e80249374b02c8879779ff4"
-            ></video>
-          </div>
+          {mediaItems.map((item, index) => (
+            <div key={index} className="flex flex-col">
+              <div
+                className="box w-[25vw] h-[31vw] bg-white rounded-[7px] relative overflow-hidden group flex-shrink-0"
+                onMouseEnter={() =>
+                  handleVideoMouseEnter(
+                    document.getElementById(
+                      `video-${index}`
+                    ) as HTMLVideoElement
+                  )
+                }
+                onMouseLeave={() =>
+                  handleVideoMouseLeave(
+                    document.getElementById(
+                      `video-${index}`
+                    ) as HTMLVideoElement
+                  )
+                }
+              >
+                <Image
+                  src={item.img}
+                  width={410}
+                  height={100}
+                  alt="imgae"
+                  className="transition-opacity duration-300 object-cover w-full h-full ease-in-out opacity-100 group-hover:opacity-0"
+                />
+                <video
+                  id={`video-${index}`}
+                  className="absolute top-0 left-0 w-full h-full z-0 object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100"
+                  muted
+                  loop
+                  autoPlay
+                  src={item.video}
+                ></video>
+              </div>
+              <div className="text-white mt-4">
+                <h3 className="text-2xl font-bold">{item.title}</h3>
+                <p className="text-lg text-gray-400">{item.subtitle}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div ref={cursorRef} className="drag-cursor fixed top-0 left-0 w-[80px] h-[80px] rounded-full bg-[#f7f7f7f6] text-black flex items-center justify-center text-[15px] pointer-events-none z-50 tranlate-x-[-50%] translate-y-[-50%] opacity-0">
+        <div
+          ref={cursorRef}
+          className="drag-cursor fixed p-2 px-10 top-0 left-0 w-[75px] h-[45px] rounded-full bg-[#f7f7f7f6] text-black flex items-center justify-center text-[15px] pointer-events-none z-50 tranlate-x-[-50%] translate-y-[-50%] opacity-0 font-bold"
+        >
           Drag
         </div>
-        
+
       </div>
     </div>
   );
