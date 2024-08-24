@@ -5,6 +5,8 @@ import "remixicon/fonts/remixicon.css";
 import Image from "next/image";
 import "swiper/css/bundle";
 import gsap from "gsap";
+import Link from "next/link";
+
 
 type MediaItem = {
   img: string;
@@ -23,30 +25,54 @@ const Page3: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
     // navigation code for left and right arrows
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [itemsPerView, setItemsPerView] = useState(0);
+
+    useEffect(() => {
+      const updateItemsPerView = () => {
+        if (containerRef.current) {
+          const containerWidth = containerRef.current.offsetWidth;
+          const firstChild = containerRef.current.children[0] as HTMLElement;
+          const itemWidth = firstChild.offsetWidth;
+          const gap = 28; // gap between items
+          const newItemsPerView = Math.floor(containerWidth / (itemWidth + gap));
+          setItemsPerView(newItemsPerView);
+        }
+      };
+  
+      updateItemsPerView();
+      window.addEventListener('resize', updateItemsPerView);
+  
+      return () => window.removeEventListener('resize', updateItemsPerView);
+    }, []);
+  
+    const scrollToIndex = (index: number) => {
+      if (containerRef.current) {
+        const firstChild = containerRef.current.children[0] as HTMLElement;
+        const itemWidth = firstChild.offsetWidth;
+        const gap = 28; // gap between items
+        containerRef.current.scrollTo({
+          left: index * (itemWidth + gap),
+          behavior: 'smooth'
+        });
+      }
+    };
+
     const navigateLeft = () => {
-      if(containerRef.current){
-        const scrollAmount = containerRef.current.offsetWidth;
-        const newPosition = Math.max(scrollPosition - scrollAmount, 0);
-        containerRef.current.scrollTo({
-          left: newPosition,
-          behavior: 'smooth'
-        })
-        setScrollLeft(newPosition);
-      }
-    }
-
+      setCurrentIndex((prevIndex) => {
+        const newIndex = Math.max(prevIndex - itemsPerView, 0);
+        scrollToIndex(newIndex);
+        return newIndex;
+      });
+    };
+  
     const navigateRight = () => {
-      if(containerRef.current){
-        const scrollAmount = containerRef.current.offsetWidth;
-        const newPosition = Math.min(scrollPosition + scrollAmount, containerRef.current.scrollWidth - containerRef.current.offsetWidth);
-        containerRef.current.scrollTo({
-          left: newPosition,
-          behavior: 'smooth'
-        })
-        setScrollLeft(newPosition);
-      }
-    }
-
+      setCurrentIndex((prevIndex) => {
+        const newIndex = Math.min(prevIndex + itemsPerView, mediaItems.length - itemsPerView);
+        scrollToIndex(newIndex);
+        return newIndex;
+      });
+    };
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -100,7 +126,7 @@ const Page3: React.FC = () => {
       gsap.to(cursorRef.current, {
         scale: 1,
         opacity: 1,
-        duration: 0.3,
+        duration: 0.4,
       });
     }
   }, []);
@@ -109,7 +135,7 @@ const Page3: React.FC = () => {
     if (!isDragging && cursorRef.current) {
       gsap.to(cursorRef.current, {
         scale: 0,
-        duration: 0.3,
+        duration: 0.4,
       });
     }
   }, [isDragging]);
@@ -248,12 +274,14 @@ const Page3: React.FC = () => {
   ];
 
   return (
-    <div className="page-3 bg-black w-full h-[55vw] p-14 font-[Satoshi]">
+    <div className="page-3 bg-black w-full h-[52vw] p-14 font-[Satoshi]">
       <div className="text-content flex justify-between items-center w-full ]">
         <h1 className="text-white text-5xl font-bold ">Featured work</h1>
         <div className="buttons flex items-center justify-between w-fit gap-1 hover:bg ">
+          <Link href="../portfolio">
           <button className="p-3 px-5  border-2 border-[#1d1d1dec] rounded-full text-[#ffffff]  relative overflow-hidden group">
-            <span className="relative z-10">View all</span>
+            <span
+             className="relative z-10">View all</span>
             <span className="absolute inset-0 z-0 bg-transparent group-hover:bg-[#252525e3] transition-colors duration-300 ease-[cubic-bezier(0.51,0.01,0.2,1)]" />
             <span
               className="absolute inset-0 z-0 bg-[#252525e3] scale-0 group-hover:scale-100 rounded-full transition-transform duration-300 ease-[cubic-bezier(0.51,0.01,0.2,1)]"
@@ -262,6 +290,7 @@ const Page3: React.FC = () => {
               }}
             />
           </button>
+          </Link>
           <button
             onClick={navigateLeft}
             className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
