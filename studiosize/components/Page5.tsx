@@ -99,10 +99,10 @@ const Page5 : React.FC =() => {
 
   return (
     <div ref={containerRef}
-    className="container bg-black w-full h-[89vw] p-24 font-[Satoshi] relative">
+    className="container bg-black w-full  h-[84vw] p-24 font-[Satoshi] relative overflow-hidden">
       <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
       <div className="content flex  items-start justify-between">
-        <div className="w-[68vw] relative" style={{height : '100%'}}>
+        <div className="w-[100%] relative" style={{height : '100%'}}>
           <div
             style={{
               height: topSpacerHeight,
@@ -111,7 +111,7 @@ const Page5 : React.FC =() => {
           />
          <div
             ref={videoContainerRef}
-            className="media w-[41vw] h-[45vw]"
+            className="media w-[45vw] h-[45vw]"
             onMouseEnter={handleVideoContainerHover}
             onMouseLeave={() => setActiveVideo('')}
          >
@@ -129,7 +129,7 @@ const Page5 : React.FC =() => {
          </div>
         </div>
 
-        <div className="text-content  w-[55vw]">
+        <div className="text-content h-full  w-[60vw]">
           {services.map((service, index) => (
             <motion.h2
               key={index}
