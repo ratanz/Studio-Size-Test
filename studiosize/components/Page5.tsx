@@ -99,7 +99,7 @@ const Page5 : React.FC =() => {
 
   return (
     <div ref={containerRef}
-    className="container bg-black w-full h-[95vw] p-24 font-[Satoshi] relative">
+    className="container bg-black w-full h-[89vw] p-24 font-[Satoshi] relative">
       <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
       <div className="content flex  items-start justify-between">
         <div className="w-[68vw] relative" style={{height : '100%'}}>
@@ -137,7 +137,7 @@ const Page5 : React.FC =() => {
               className="text-[4.5vw] font-bold tracking-tight leading-[1] mb-2 cursor-pointer"
               initial={{ x: 0, color: "#333333" }}
               animate={{
-                x: activeIndex === index ? 50 : 0,
+                x: activeIndex === index ? 30 : 0,
                 color: activeIndex === index ? "#FFFFFF" : "#333333",
               }}
               transition={{ duration: 0.3 }}
