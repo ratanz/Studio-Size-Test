@@ -123,7 +123,7 @@ const Page5 : React.FC =() => {
                autoPlay
                loop
                muted
-               className="w-full h-[30vw] object-cover rounded-lg"
+               className="w-full h-[30vw] object-cover rounded-lg "
                />
            )}
          </div>
@@ -134,10 +134,10 @@ const Page5 : React.FC =() => {
             <motion.h2
               key={index}
               ref={(el) => setTextRef(el, index)}
-              className="text-[4.5vw] font-bold leading-[1] mb-2 cursor-pointer"
+              className="text-[4.5vw] font-bold tracking-tight leading-[1] mb-2 cursor-pointer"
               initial={{ x: 0, color: "#333333" }}
               animate={{
-                x: activeIndex === index ? -10 : 0,
+                x: activeIndex === index ? 50 : 0,
                 color: activeIndex === index ? "#FFFFFF" : "#333333",
               }}
               transition={{ duration: 0.3 }}
