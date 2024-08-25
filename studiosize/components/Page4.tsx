@@ -3,13 +3,13 @@ const Page4 = () => {
     <>
       <div className="main bg-black w-full h-[55vw] p-14 font-[Satoshi]">
         <div className="text-content flex w-full flex-row]">
-          <h1 className="text-white text-[5.4vw] font-bold tracking-[-0.3vw] leading-none ">
+          <h1 className="text-white text-[5.4vw] font-bold  leading-none ">
             Back to the simple, <br />
             intuitive, and inspiring
           </h1>
         </div>
         <div className="content flex p-10 h-[40vw] items-center justify-between">
-          <div className="video w-[40vw]  p-10 flex items-center justify-center object-cover">
+          <div className="video w-[35vw]  p-10 flex items-center justify-center object-cover">
             <video
               autoPlay
               muted
@@ -18,7 +18,7 @@ const Page4 = () => {
             ></video>
           </div>
           <div className="text text-white flex mt-24 flex-col w-[46vw] px-10 justify-center">
-            <h1 className="text-[1.7vw] font-bold">
+            <h1 className="text-[1.6vw] font-bold leading-tight">
               Big multinational companies or small local brands. Partner
               approach with one universal goal - to create authentic,
               functional, and beautiful design.

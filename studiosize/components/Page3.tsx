@@ -22,7 +22,7 @@ const Page3: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
     // navigation code for left and right arrows
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -195,7 +195,7 @@ const Page3: React.FC = () => {
     {
       img: "/assets/HotType.jpg",
       video:
-        "https://player.vimeo.com/progressive_redirect/playback/912967172/rendition/540p/file.mp4?loc=external&log_user=0&signature=cab2e2728c39f5caf72aa082ad1fce88bfbbe11f2875057fface207ab9bc9545",
+        "/assets/vid1.mp4",
       title: "Hot Type",
       subtitle: "Red hot type animations",
     },

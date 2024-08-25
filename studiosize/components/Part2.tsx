@@ -74,7 +74,7 @@ const Part2: React.FC = () => {
           autoPlay
           loop
           muted
-          src="https://player.vimeo.com/progressive_redirect/playback/953957232/rendition/1080p/file.mp4?loc=external&log_user=0&signature=83883f7f7a50c6aeb64e3b1b1f466615177dae78f2295dc7a57d51752c5b712a"
+          src="/assets/page1.mp4"
         ></video>
       </div>
     </div>
