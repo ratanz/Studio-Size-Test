@@ -61,73 +61,111 @@ const services = [
   },
   {
     name: "Brand Art©️",
-    video :"https://player.vimeo.com/progressive_redirect/playback/939539365/rendition/720p/file.mp4?loc=external&log_user=0&signature=d5965ce7678518d264c634924c15654f982211973e44811f9941e8fd3029113e"
+    video:
+      "https://player.vimeo.com/progressive_redirect/playback/939539365/rendition/720p/file.mp4?loc=external&log_user=0&signature=d5965ce7678518d264c634924c15654f982211973e44811f9941e8fd3029113e",
   },
 ];
 
-const Page5 : React.FC =() => {
+const Page5: React.FC = () => {
   const [activeVideo, setActiveVideo] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
   const [topSpacerHeight, setTopSpacerHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const textRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const videoRefs = useRef<{ [key: string]: HTMLVideoElement | null }>({});
 
+  const setTextRef = useCallback(
+    (el: HTMLHeadingElement | null, index: number) => {
+      textRefs.current[index] = el;
+    },
+    []
+  );
 
-  const setTextRef = useCallback((el: HTMLHeadingElement | null, index: number) => {
-    textRefs.current[index] = el;
-}, []);
-  
+  const setVideoRef = useCallback(
+    (el: HTMLVideoElement | null, src: string) => {
+      if (el) {
+        videoRefs.current[src] = el;
+      }
+    },
+    []
+  );
 
-  const handleMouseEnter = (service: any, index: number) => {
+  useEffect(() => {
+    // Preload all videos
+    services.forEach((service) => {
+      const video = new Audio(service.video);
+      video.preload = "auto";
+    });
+  }, []);
+
+  const handleMouseEnter = useCallback((service: any, index: number) => {
     setActiveVideo(service.video);
     setActiveIndex(index);
 
-    if (containerRef.current && textRefs.current[index] && videoContainerRef.current) {
+    if (
+      containerRef.current &&
+      textRefs.current[index] &&
+      videoContainerRef.current
+    ) {
       const containerRect = containerRef.current.getBoundingClientRect();
       const textRect = textRefs.current[index]!.getBoundingClientRect();
-      const videoContainerRect = videoContainerRef.current.getBoundingClientRect();
-      const newTopSpacerHeight = textRect.top - containerRect.top - (videoContainerRect.height / 2) + (textRect.height / 2);
-      setTopSpacerHeight(Math.max(0, newTopSpacerHeight ));
+      const videoContainerRect =
+        videoContainerRef.current.getBoundingClientRect();
+      const newTopSpacerHeight =
+        textRect.top -
+        containerRect.top -
+        videoContainerRect.height / 2 +
+        textRect.height / 2;
+      setTopSpacerHeight(Math.max(0, newTopSpacerHeight));
     }
-  };
 
-  const handleVideoContainerHover = () => {
-    if(activeIndex !== -1 && services[activeIndex].video) {
-        setActiveVideo(services[activeIndex].video);
-  } 
-};
+    // Play the video immediately
+    if (videoRefs.current[service.video]) {
+      videoRefs.current[service.video]!.play();
+    }
+  }, []);
+
+  const handleVideoContainerHover = useCallback(() => {
+    if (activeIndex !== -1 && services[activeIndex].video) {
+      setActiveVideo(services[activeIndex].video);
+    }
+  }, [activeIndex]);
 
   return (
-    <div ref={containerRef}
-    className="container bg-black w-full  h-[80vw] p-24 font-[Satoshi] relative overflow-hidden">
+    <div
+      ref={containerRef}
+      className="container bg-black w-full  h-[80vw] p-24 font-[Satoshi] relative overflow-hidden"
+    >
       <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
       <div className="content flex  items-start justify-between">
-        <div className="w-[100%] relative" style={{height : '100%'}}>
+        <div className="w-[100%] relative" style={{ height: "100%" }}>
           <div
             style={{
               height: topSpacerHeight,
               transition: "height 0.1s ease-in",
             }}
           />
-         <div
+          <div
             ref={videoContainerRef}
             className="media w-[45vw] h-[45vw]"
             onMouseEnter={handleVideoContainerHover}
-            onMouseLeave={() => setActiveVideo('')}
-         >
-
-           {activeVideo && (
-               <video
-               key={activeVideo}
-               src={activeVideo}
-               autoPlay
-               loop
-               muted
-               className="w-full h-[30vw] object-cover rounded-lg "
-               />
-           )}
-         </div>
+            onMouseLeave={() => setActiveVideo("")}
+          >
+            {services.map((service) => (
+              <video
+                key={service.video}
+                ref={(el) => setVideoRef(el, service.video)}
+                src={service.video}
+                loop
+                muted
+                playsInline
+                className={`w-[45vw] h-[30vw] object-cover rounded-lg absolute  transition-opacity duration-300 ${
+                  activeVideo === service.video ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="text-content h-full  w-[60vw]">
@@ -141,7 +179,7 @@ const Page5 : React.FC =() => {
                 x: activeIndex === index ? 30 : 0,
                 color: activeIndex === index ? "#FFFFFF" : "#333333",
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
               onMouseEnter={() => handleMouseEnter(service, index)}
               onMouseLeave={() => {
                 setActiveVideo("");
@@ -155,8 +193,7 @@ const Page5 : React.FC =() => {
         </div>
       </div>
     </div>
-  )
+  );
 };
-
 
 export default Page5;
