@@ -73,6 +73,7 @@ const Page5 : React.FC =() => {
   const textRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const videoContainerRef = useRef<HTMLDivElement>(null);
 
+
   const setTextRef = useCallback((el: HTMLHeadingElement | null, index: number) => {
     textRefs.current[index] = el;
 }, []);
@@ -99,7 +100,7 @@ const Page5 : React.FC =() => {
 
   return (
     <div ref={containerRef}
-    className="container bg-black w-full  h-[84vw] p-24 font-[Satoshi] relative overflow-hidden">
+    className="container bg-black w-full  h-[80vw] p-24 font-[Satoshi] relative overflow-hidden">
       <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
       <div className="content flex  items-start justify-between">
         <div className="w-[100%] relative" style={{height : '100%'}}>
