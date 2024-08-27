@@ -198,7 +198,7 @@ const Page6: React.FC = () => {
   ];
 
   return (
-    <div className="page-6 w-full h-[45vw] p-14 font-[Satoshi] bg-black">
+    <div className="page-6 w-full h-[68vw] p-14 font-[Satoshi] bg-black">
       <div className="content mt-10 relative">
         <div
           ref={containerRef}
@@ -266,7 +266,7 @@ const Page6: React.FC = () => {
               <button
                 // onClick={navigateRight}
                 className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
-             transtion-all duration-300 ease-in-ou hover:scale-110"
+             transtion-all duration-300 ease-in-out hover:scale-110"
               >
                 <i className="ri-arrow-right-line"></i>
               </button>

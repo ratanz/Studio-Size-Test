@@ -136,7 +136,7 @@ const Page5: React.FC = () => {
     <div className="bg-black min-h-screen w-full">
       <div
         ref={containerRef}
-        className="container bg-black w-full h-[83vw] p-14 font-[Satoshi] relative overflow-hidden"
+        className="w-full h-[83vw] p-14 font-[Satoshi] relative "
       >
         <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
         <div className="content flex items-start justify-between">
@@ -169,7 +169,7 @@ const Page5: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-content h-full w-[90vw]">
+          <div className="text-content h-full w-[70vw]">
             {services.map((service, index) => (
               <motion.h2
                 key={index}

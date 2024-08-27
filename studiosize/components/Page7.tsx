@@ -2,21 +2,30 @@ import React from "react";
 
 const Page7 = () => {
   return (
-    <div className="container w-full h-[82vw] relative bg-black p-14 font-[Satoshi]">
-      <div className="video-content w-full h-full relative ">
+    <div className="w-full h-screen relative bg-black p-14 font-[Satoshi] overflow-hidden  ">
+      <div className="video-content bg-black w-full h-full relative overflow-hidden ">
         <video
-          className="rounded-[10px] w-full h-full"
+          className="rounded-[10px] object-cover w-full h-full"
           muted
           autoPlay
           loop
           src="https://studio-size.com/wp-content/uploads/2024/05/Studio-Size-%E2%80%94-Labs02.mp4"
         ></video>
 
-        <div className="text flex absolute top-[53%] right-[-5%] w-full h-full z-10 flex-col ">
-          <h1 className="text-white text-[5vw] font-bold leading-none">
-            Size Labs - the place <br /> for all art platfroms
+        <div className="absolute inset-0 flex flex-col justify-end p-14 ">
+          <h1 className="text-white text-[5vw] w-[75%] font-bold leading-[4.3vw] tracking-tighter">
+            Size Labs — the <br /> place for all artfroms
           </h1>
-          <h1 className="text-white">Explore labs</h1>
+
+          <div className="smtext flex items-center justify-between w-fit gap-5 mt-7">
+            <h1 className="text-white font-bold">Explore labs</h1>
+            <button
+              className="p-3 pl-4 pr-4 bg-[#dedededb] border-1 border-gray rounded-full text-black hover:bg-[#f8f8f8e7]
+             transtion-all duration-300 ease-in-out w-fit hover:scale-110"
+            >
+              <i className="ri-arrow-right-line"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
