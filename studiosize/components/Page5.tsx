@@ -91,13 +91,13 @@ const Page5: React.FC = () => {
     []
   );
 
-  useEffect(() => {
-    // Preload all videos
-    services.forEach((service) => {
-      const video = new Audio(service.video);
-      video.preload = "auto";
-    });
-  }, []);
+  // useEffect(() => {
+  //   // Preload all videos
+  //   services.forEach((service) => {
+  //     const video = new Audio(service.video);
+  //     video.preload = "auto";
+  //   });
+  // }, []);
 
   const handleMouseEnter = useCallback((service: any, index: number) => {
     setActiveVideo(service.video);
@@ -122,7 +122,12 @@ const Page5: React.FC = () => {
 
     // Play the video immediately
     if (videoRefs.current[service.video]) {
-      videoRefs.current[service.video]!.play();
+      const video = videoRefs.current[service.video]!;
+      if(!video.src){
+        video.src = service.video;
+        video.load();
+      }
+      video.play();
     }
   }, []);
 
