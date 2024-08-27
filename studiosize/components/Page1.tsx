@@ -28,8 +28,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ words, interval = 1000 }) =
           initial="hidden"
           animate="visible"
           exit="exit"
-         
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
         >
           {words[currentWordIndex].split('').map((char, index) => (
             <motion.span

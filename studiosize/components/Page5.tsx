@@ -133,63 +133,65 @@ const Page5: React.FC = () => {
   }, [activeIndex]);
 
   return (
-    <div
-      ref={containerRef}
-      className="container bg-black w-full  h-[83vw] p-24 font-[Satoshi] relative overflow-hidden"
-    >
-      <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
-      <div className="content flex  items-start justify-between">
-        <div className="w-[100%] relative" style={{ height: "100%" }}>
-          <div
-            style={{
-              height: topSpacerHeight,
-              transition: "height 0.5s ease-in",
-            }}
-          />
-          <div
-            ref={videoContainerRef}
-            className="media w-[45vw] h-[45vw]"
-            onMouseEnter={handleVideoContainerHover}
-            onMouseLeave={() => setActiveVideo("")}
-          >
-            {services.map((service) => (
-              <video
-                key={service.video}
-                ref={(el) => setVideoRef(el, service.video)}
-                src={service.video}
-                loop
-                muted
-                playsInline
-                className={`w-[45vw] h-[30vw] object-cover rounded-lg absolute  transition-opacity duration-300 ${
-                  activeVideo === service.video ? "opacity-100" : "opacity-0"
-                }`}
-              />
+    <div className="bg-black min-h-screen w-full">
+      <div
+        ref={containerRef}
+        className="container bg-black w-full h-[83vw] p-14 font-[Satoshi] relative overflow-hidden"
+      >
+        <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
+        <div className="content flex items-start justify-between">
+          <div className="w-[100%] relative" style={{ height: "100%" }}>
+            <div
+              style={{
+                height: topSpacerHeight,
+                transition: "height 0.5s ease-in",
+              }}
+            />
+            <div
+              ref={videoContainerRef}
+              className="media w-[45vw] h-[45vw]"
+              onMouseEnter={handleVideoContainerHover}
+              onMouseLeave={() => setActiveVideo("")}
+            >
+              {services.map((service) => (
+                <video
+                  key={service.video}
+                  ref={(el) => setVideoRef(el, service.video)}
+                  src={service.video}
+                  loop
+                  muted
+                  playsInline
+                  className={`w-[45vw] h-[30vw] object-cover rounded-lg absolute transition-opacity duration-300 ${
+                    activeVideo === service.video ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="text-content h-full w-[90vw]">
+            {services.map((service, index) => (
+              <motion.h2
+                key={index}
+                ref={(el) => setTextRef(el, index)}
+                className="text-[4.5vw] font-bold tracking-tight leading-[1] mb-2 cursor-pointer"
+                initial={{ x: 0, color: "#333333" }}
+                animate={{
+                  x: activeIndex === index ? 30 : 0,
+                  color: activeIndex === index ? "#FFFFFF" : "#333333",
+                }}
+                transition={{ duration: 0.2 }}
+                onMouseEnter={() => handleMouseEnter(service, index)}
+                onMouseLeave={() => {
+                  setActiveVideo("");
+                  setActiveIndex(-1);
+                  setTopSpacerHeight(0);
+                }}
+              >
+                {service.name}
+              </motion.h2>
             ))}
           </div>
-        </div>
-
-        <div className="text-content h-full  w-[60vw]">
-          {services.map((service, index) => (
-            <motion.h2
-              key={index}
-              ref={(el) => setTextRef(el, index)}
-              className="text-[4.5vw] font-bold tracking-tight leading-[1] mb-2 cursor-pointer"
-              initial={{ x: 0, color: "#333333" }}
-              animate={{
-                x: activeIndex === index ? 30 : 0,
-                color: activeIndex === index ? "#FFFFFF" : "#333333",
-              }}
-              transition={{ duration: 0.2 }}
-              onMouseEnter={() => handleMouseEnter(service, index)}
-              onMouseLeave={() => {
-                setActiveVideo("");
-                setActiveIndex(-1);
-                setTopSpacerHeight(0);
-              }}
-            >
-              {service.name}
-            </motion.h2>
-          ))}
         </div>
       </div>
     </div>

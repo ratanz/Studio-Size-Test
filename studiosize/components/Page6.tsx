@@ -198,7 +198,7 @@ const Page6: React.FC = () => {
   ];
 
   return (
-    <div className="page-6 w-full h-[90vw] p-14 font-[Satoshi] bg-black">
+    <div className="page-6 w-full h-[45vw] p-14 font-[Satoshi] bg-black">
       <div className="content mt-10 relative">
         <div
           ref={containerRef}
@@ -254,7 +254,7 @@ const Page6: React.FC = () => {
         </div>
 
         <div className="text-content w-full h-full mt-16 flex">
-          <div className="button-container flex items-center justify-between w-[27vw] gap-5 hover:bg ">
+          <div className="button-container flex items-center justify-between w-[30vw] gap-5 hover:bg ">
             <div className="button flex items-center justify-between gap-2">
               <button
                 // onClick={navigateLeft}
@@ -273,7 +273,7 @@ const Page6: React.FC = () => {
             </div>
           </div>
 
-          <div className="main-text w-[64vw] h-fit  flex gap-10 items-center">
+          <div className="main-text w-[64vw] h-fit flex gap-10 items-center">
             <p className="text-white tracking-[0.1] leading-[1.1] text-2xl font-bold">
               Great design has no expiration date. It lasts for years and
               inspires instantly. Our creative freedom enables us to spend more
@@ -288,7 +288,7 @@ const Page6: React.FC = () => {
         </div>
       </div>
 
-      <div className="about w-[50%] mt-10 ml-[26.7vw] flex items-center gap-7">
+      <div className="about w-[50%] mt-10 ml-[29.5vw] flex items-center gap-7">
         <p className="text-white tracking-[0.1] leading-[1.1] text-2xl font-bold">
           About us
         </p>
