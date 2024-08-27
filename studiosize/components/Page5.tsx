@@ -135,7 +135,7 @@ const Page5: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="container bg-black w-full  h-[80vw] p-24 font-[Satoshi] relative overflow-hidden"
+      className="container bg-black w-full  h-[83vw] p-24 font-[Satoshi] relative overflow-hidden"
     >
       <h1 className="text-white font-bold text-[1.3vw] mb-4">Services</h1>
       <div className="content flex  items-start justify-between">
@@ -143,7 +143,7 @@ const Page5: React.FC = () => {
           <div
             style={{
               height: topSpacerHeight,
-              transition: "height 0.1s ease-in",
+              transition: "height 0.5s ease-in",
             }}
           />
           <div

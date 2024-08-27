@@ -259,14 +259,14 @@ const Page6: React.FC = () => {
               <button
                 // onClick={navigateLeft}
                 className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
-             transtion-all duration-300 ease-in-out"
+             transtion-all duration-300 ease-in-out hover:scale-110"
               >
                 <i className="ri-arrow-left-line"></i>
               </button>
               <button
                 // onClick={navigateRight}
                 className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
-             transtion-all duration-300 ease-in-out"
+             transtion-all duration-300 ease-in-ou hover:scale-110"
               >
                 <i className="ri-arrow-right-line"></i>
               </button>
@@ -295,7 +295,7 @@ const Page6: React.FC = () => {
         <button
           // onClick={navigateRight}
           className="p-3 pl-4 pr-4 bg-[#252525e3] border-1 border-gray rounded-full text-white hover:bg-[#424242e7]
-             transtion-all duration-300 ease-in-out"
+             transtion-all duration-300 ease-in-out hover:scale-110"
         >
           <i className="ri-arrow-right-line"></i>
         </button>
