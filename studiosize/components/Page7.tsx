@@ -2,7 +2,7 @@ import React from "react";
 
 const Page7 = () => {
   return (
-    <div className="w-full h-screen relative bg-black p-14 font-[Satoshi] overflow-hidden  ">
+    <div className="w-full h-screen relative bg-black p-14 font-[Satoshi]  ">
       <div className="video-content bg-black w-full h-full relative overflow-hidden ">
         <video
           className="rounded-[10px] object-cover w-full h-full"
