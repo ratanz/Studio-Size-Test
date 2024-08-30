@@ -37,7 +37,8 @@ const SocialLink: React.FC<SocialLinkProps> = ({
       onMouseLeave={onMouseLeave}
     >
       <h1
-        className={` transition-all duration-300 ease-in-out transform group-hover:text-white absolute  text-white flex justify-evenly w-full items-center 
+        className={` transition-all duration-300 ease-in-out transform group-hover:text-white absolute  text-white flex justify-center
+          items-center w-full  gap-24 tracking-wide text-2xl
           ${isActive ? "opacity-100 scale-110" : "opacity-50 scale-100"}`}
       >
         {name}
@@ -47,7 +48,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({
         <div
           className={`absolute top-10 w-[20vw] transition-all duration-500 ease-in-out`}
           style={{
-            left: isFirst ? "20%" : isLast ? "-140%" : "50%",
+            left: isFirst ? "10%" : isLast ? "-192%" : "50%",
             right: isLast ? "0" : "auto",
             transform: !isFirst && !isLast ? "translateX(-50%)" : "none",
           }}
@@ -123,8 +124,8 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <div className="footer-content w-full relative h-[100vw] pt-40 bg-black p-14 ">
-      <ul className="linkstext-white flex justify-between  text-2xl list-none gap-5 ">
+    <div className="footer-content w-full relative h-[100vw] pt-40 bg-black p-14">
+      <ul className="links flex w-full list-none border-b-2 gap-14 border-zinc-800 h-16 ">
         {socialLinks.map((link, index) => (
           <SocialLink
             key={link.name}
@@ -138,6 +139,22 @@ const Footer: React.FC = () => {
           />
         ))}
       </ul>
+
+      <div className="link2 flex mt-14">
+        <div className="">
+          <h1 className="text-zinc-600 text-sm w-24 hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Small is beautiful.</h1>
+        </div>
+
+        <div className="flex justify-end w-full items-center text-zinc-600 text-sm gap-10">
+          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Index</h1>
+          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">About</h1>
+          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">Blog</h1>
+          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Privacy Policy</h1>
+          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out">
+            © Size—All rights reserved.
+          </h1>
+        </div>
+      </div>
     </div>
   );
 };
