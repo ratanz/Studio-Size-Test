@@ -49,8 +49,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ words, interval = 1000 }) =
 
 const Page1: React.FC = () => {
   return (    
-    <div className='page-part-1 w-full h-[24vw] p-16 pt-20 flex font-[Satoshi] '> 
-      <div className="content flex flex-col h-fit text-[6vw] tracking-[-0.3vw] leading-[4.5vw] font-semibold">
+    <div className='page-part-1 w-full h-[32vw] p-16 pt-20 flex font-[Satoshi] '> 
+      <div className="content flex flex-col h-full mt-24 text-[6vw] tracking-[-0.3vw] leading-[4.5vw] font-semibold">
         <h1 className='text-white'>Design studio</h1>
         <h1 className='text-white'>for timeless <AnimatedText words={['strategy', 'packaging', 'motion', 'naming', 'branding']} /></h1> 
       </div>

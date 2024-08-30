@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <div className="footer-content w-full relative h-[100vw] pt-40 bg-black p-14">
+    <div className="footer-content w-full relative h-[58vw] overflow-hidden pt-40 bg-black p-14">
       <ul className="links flex w-full list-none border-b-2 gap-14 border-zinc-800 h-16 ">
         {socialLinks.map((link, index) => (
           <SocialLink
@@ -140,21 +140,29 @@ const Footer: React.FC = () => {
         ))}
       </ul>
 
-      <div className="link2 flex mt-14">
+      <div className="link2 flex mt-14 relative">
         <div className="">
-          <h1 className="text-zinc-600 text-sm w-24 hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Small is beautiful.</h1>
+          <h1 className="text-zinc-400 font-sans w-32 hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Small is beautiful.</h1>
         </div>
 
-        <div className="flex justify-end w-full items-center text-zinc-600 text-sm gap-10">
-          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Index</h1>
-          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">About</h1>
-          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">Blog</h1>
-          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Privacy Policy</h1>
-          <h1 className="text-zinc-600 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out">
+        <div className="flex justify-end w-full items-center font-sans gap-10 mb-10 absolute">
+          <h1 className="text-zinc-400 hover:cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Index</h1>
+          <h1 className="text-zinc-400 hover:cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">About</h1>
+          <h1 className="text-zinc-400 hover:cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105 ">Blog</h1>
+          <h1 className="text-zinc-400 hover:cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out hover:scale-105">Privacy Policy</h1>
+          <h1 className="text-zinc-400 cursor-pointer hover:text-zinc-100 transition-all duration-300 ease-in-out">
             © Size—All rights reserved.
           </h1>
         </div>
       </div>
+
+      <div className="flex items-center justify-center w-[100%] ">
+        <h1 className="text-white text-[31vw] font-sans font-bold leading-none relative right-5">Footer
+          <span className="text-2xl absolute right-14 bottom-10">©</span>
+        </h1>
+   
+      </div>
+    
     </div>
   );
 };
